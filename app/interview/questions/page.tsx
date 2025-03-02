@@ -5,6 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
+
+
 
 export default function InterviewQuestionsPage() {
   const router = useRouter();
@@ -26,7 +29,7 @@ export default function InterviewQuestionsPage() {
       if (savedAnswers) {
         setAnswers(JSON.parse(savedAnswers));
       }
-    }
+    } 
   }, []);
   
 
@@ -108,9 +111,11 @@ export default function InterviewQuestionsPage() {
         </div>
 
         {/* Progress Bar */}
-        <div className="w-[823px] mt-6">
-          <Progress className="h-2 border border-blue-500" value={(currentQuestionIndex / (questions.length - 1)) * 100} />
-        </div>
+        <Progress
+            className="h-2 border border-blue-500"
+            value={questions.length > 1 ? (currentQuestionIndex / (questions.length - 1)) * 100 : 100}
+          />
+
       </section>
     </main>
   );
