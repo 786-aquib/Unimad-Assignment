@@ -21,11 +21,14 @@ export default function InterviewQuestionsPage() {
   const [answers, setAnswers] = useState<string[]>(new Array(questions.length).fill(""));
 
   useEffect(() => {
-    const savedAnswers = localStorage.getItem("userAnswers");
-    if (savedAnswers) {
-      setAnswers(JSON.parse(savedAnswers));
+    if (typeof window !== "undefined") {
+      const savedAnswers = localStorage.getItem("userAnswers");
+      if (savedAnswers) {
+        setAnswers(JSON.parse(savedAnswers));
+      }
     }
   }, []);
+  
 
   const handleCompare = () => {
     console.log("Answers:", answers);
